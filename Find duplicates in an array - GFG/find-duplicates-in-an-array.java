@@ -23,26 +23,43 @@ class GFG {
 
 class Solution {
     public static ArrayList<Integer> duplicates(int arr[], int n) {
-        Set<Integer> list = new HashSet<Integer>();
-        Set<Integer> list1 = new HashSet<Integer>();
-        //Arrays.sort(arr);
-        for(int i =0; i<n; i++){
-            if(list.contains(arr[i])){
-                if(list1.contains(arr[i])){
-                    continue;
-                }
-                else {
-                    list1.add(arr[i]);
-                }
+//         Set<Integer> list = new HashSet<Integer>();
+//         Set<Integer> list1 = new HashSet<Integer>();
+//         //Arrays.sort(arr);
+//         for(int i =0; i<n; i++){
+//             if(list.contains(arr[i])){
+//                 if(list1.contains(arr[i])){
+//                     continue;
+//                 }
+//                 else {
+//                     list1.add(arr[i]);
+//                 }
+//             }
+//             else {
+//                 list.add(arr[i]);
+//             }
+//         }
+//         if(list1.size()==0)
+//         list1.add(-1);
+//         ArrayList<Integer> list2 = new ArrayList<>(list1);
+//         Collections.sort(list2);
+//         return list2;
+// }
+
+        ArrayList<Integer> result = new ArrayList<Integer>();
+        Arrays.sort(arr);
+        for(int i=0; i<n-1; i++){
+            if(result.size()!=0 && result.get(result.size()-1) == arr[i]){
+                continue; 
             }
-            else {
-                list.add(arr[i]);
+            if(arr[i]== arr[i+1]){
+                result.add(arr[i]);
             }
         }
-        if(list1.size()==0)
-        list1.add(-1);
-        ArrayList<Integer> list2 = new ArrayList<>(list1);
-        Collections.sort(list2);
-        return list2;
-}
+        if(result.size()==0){
+            result.add(-1);
+        }
+        return result;
+    }
+
 }
